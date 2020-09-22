@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html style="overflow: hidden;">
+<head>
+<meta charset="UTF-8" />
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
+<title>Hello React!</title>
+<script src="https://cdn.staticfile.org/react/16.4.0/umd/react.development.js"></script>
+<script src="https://cdn.staticfile.org/react-dom/16.4.0/umd/react-dom.development.js"></script>
+<script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+<script src="../lib/card-scroll-animate.js"></script>
+<style>
+  .card-container{
+    width: 80%;
+    margin: 40px auto;
+    box-sizing: border-box;
+  }
+  .card-inner{
+    padding: 30px 20px;
+    box-shadow: 0px 1px 10px 2px #ccc;
+    background: #fff;
+  }
+</style>
+</head>
+<body style="overflow: hidden;margin:0;">
+
+<div id="example"></div>
+<script type="text/babel">
+function Card({ value, onToggleNext }) {
+  return (
+    <div
+      className="card-container"
+    >
+      <div className="card-inner">
+        <div>{value}</div>
+        <div className="btn-group">
+          <button onClick={onToggleNext}>换一个</button>
+          <button onClick={() => console.log('发帖讨论', value)}>发帖讨论</button>
+        </div>
+      </div>
+  </div>
+  )
+}
+let value = 1
+
+const create = () => {
+  const v = value++
+  return <Card value={v} />
+}
+const initialPairs = [create(), create()]
+const getNext = () => {
+  return create()
+}
+
+function App() {
+  return (
+    <div className="App">
+      <CardScrollAnimate.default
+        initialPairs={initialPairs}
+        getNext={getNext}
+        animationTime={0.3}
+        coverContainerScale={1.05}
+        coverContainerTop={15}
+        scrollThreshold={100}
+      />
+    </div>
+  )
+}
+ReactDOM.render(
+	<App />,
+	document.getElementById('example')
+);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,18 @@
+.card-scroll-animate-container{
+  position: relative;
+  height: 300px;
+  background: #eee;
+}
+.card-scroll-animate:first-child{
+  position: absolute;
+  z-index: 10000;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+.card-scroll-animate:last-child{
+  position: absolute;
+  z-index: 9999;
+  left: 0;
+  width: 100%;
+}
