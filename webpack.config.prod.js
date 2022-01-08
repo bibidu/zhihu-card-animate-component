@@ -1,10 +1,11 @@
 const { resolve } = require('path');
 const webpack = require('webpack');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   mode: 'production',
-  entry: resolve(__dirname, 'src/animate'),
+  entry: resolve(__dirname, 'test/main'),
   output: {
     path: resolve(__dirname, 'lib'),
     filename: 'card-scroll-animate.js',
@@ -46,6 +47,10 @@ module.exports = {
     ]
   },
   plugins: [
+    new HtmlWebpackPlugin({
+      template: resolve(__dirname, 'src/template.html'),
+      filename: 'index.html',
+    }),
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify('production')
